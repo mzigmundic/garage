@@ -1,0 +1,68 @@
+const vehicles = [
+    {
+        id: "1",
+        brand: "1",
+        name: "320",
+        image: "https://www.cstatic-images.com/car-pictures/xl/usc60bmc201a021001_2.png",
+        power: 85,
+        featured: false,
+    },
+    {
+        id: "2",
+        brand: "3",
+        name: "ES 250",
+        image: "https://www.cstatic-car-pictures.com/images/?IMG=USD10LEC382A022008.jpg",
+        power: 115,
+        featured: false,
+    },
+    {
+        id: "3",
+        brand: "2",
+        name: "911",
+        image: "https://car-pictures.cars.com/images/?IMG=USD10PRC018A021001.jpg&HEIGHT=600",
+        power: 205,
+        featured: true,
+    },
+    {
+        id: "4",
+        brand: "2",
+        name: "Boxter",
+        image: "https://www.cstatic-car-pictures.com/images/?IMG=USD10PRC151A022004.jpg",
+        power: 180,
+        featured: false,
+    },
+    {
+        id: "5",
+        brand: "3",
+        name: "IS 350",
+        image: "https://www.cstatic-images.com/supersized/in/v1/431523/JTHD51GF8M5008910/c69812c949c455e1e5fdd6f4912e426f.jpg",
+        power: 200,
+        featured: false,
+    },
+    {
+        id: "6",
+        brand: "1",
+        name: "M3",
+        image: "https://www.cstatic-car-pictures.com/images/?IMG=CAD10BMC111B022002.jpg",
+        power: 110,
+        featured: true,
+    },
+    {
+        id: "7",
+        brand: "2",
+        name: "Cayman",
+        image: "https://car-pictures.cars.com/images/?IMG=USD00PRC161A021001.jpg&HEIGHT=600",
+        power: 190,
+        featured: false,
+    },
+    {
+        id: "8",
+        brand: "4",
+        name: "F-TYPE",
+        image: "https://car-pictures.cars.com/images/?IMG=USD10JAC141A021001.jpg&HEIGHT=600",
+        power: 230,
+        featured: false,
+    },
+];
+
+export default vehicles;

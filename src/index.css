@@ -1,6 +1,8 @@
 :root {
     --color-primary: #ce4532;
+    --color-success: #53a653;
     --color-white: #fff;
+    --color-gray-light: #bbb;
     --color-gray-medium: #333;
     --color-gray-dark: #111;
     --color-black: #000;
@@ -33,16 +35,25 @@ body > div {
     flex-direction: column;
 }
 
+main {
+    min-height: calc(100vh - 11.5rem);
+}
+
 ul {
     list-style-type: none;
 }
 
 a {
     text-decoration: none;
+    height: fit-content;
 }
 
 img {
     width: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .container {
@@ -78,6 +89,10 @@ img {
     padding: 0 2rem;
 }
 
+.navigation__item:last-child {
+    padding-right: 0;
+}
+
 .navigation__item a.active {
     border-bottom: 1px solid var(--color-primary);
 }
@@ -85,8 +100,205 @@ img {
 .navigation__item a {
     text-transform: uppercase;
     color: var(--color-white);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     padding: 0.2rem 0;
+}
+
+.main-heading {
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-heading__title {
+    font-size: 3.5rem;
+    display: inline-block;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 16px;
+    font-size: 1.8rem;
+    height: 4rem;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.btn-add {
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.btn-edit {
+    background-color: var(--color-white);
+    width: 100%;
+    color: var(--color-gray-dark);
+    border: 2px solid var(--color-gray-light);
+}
+
+.btn-highlight {
+    background-color: var(--color-white);
+    border: 2px solid gold;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.btn-highlight.active {
+    background-color: gold;
+}
+
+.btn-danger {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.grid-showcase {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form {
+    padding: 5rem 0;
+    max-width: 40rem;
+    margin: auto;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.form-field input,
+.form-field select {
+    font-size: 1.6rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-field p {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.form-controls {
+    margin-top: 2rem;
+}
+
+.form-controls .btn {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.vehicle-card {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    height: fit-content;
+    padding: 1rem;
+}
+
+.vehicle-card__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vehicle-card__logo {
+    height: 6rem;
+    width: auto;
+    z-index: 1;
+}
+
+.vehicle-card__image {
+    height: 20rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.vehicle-card__name {
+    font-size: 2.2rem;
+}
+
+.vehicle-card__power {
+    font-size: 1.4rem;
+}
+
+.vehicle-card__controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__control-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card__control-flex .btn-edit,
+.card__control-flex .btn-danger {
+    width: 48%;
+}
+
+.brand-card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+
+.brand-card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22rem;
+}
+
+.brand-card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brand-card__name {
+    font-size: 2.2rem;
+    margin: 1rem;
+}
+
+.showcase-items {
+    display: flex;
+}
+
+.showcase-item {
+    width: 100vw;
 }
 
 .footer {
@@ -102,4 +314,41 @@ img {
 
 .footer p {
     font-size: 1.5rem;
+}
+
+@media screen and (max-width: 950px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-showcase {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    html {
+        font-size: 60%;
+    }
+    .header__content {
+        flex-direction: column;
+    }
+    .navigation__items {
+        height: 3.5rem;
+        align-items: center;
+    }
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .vehicle-card__image img {
+        width: 60%;
+    }
+    .brand-card__image img {
+        width: 60%;
+    }
 }

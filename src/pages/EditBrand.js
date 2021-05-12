@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import BrandForm from "../components/BrandForm";
 
-function EditBrand() {
+function EditBrand({ brandData, submitBrandData, id }) {
+    console.log(brandData);
     return (
         <div className="container">
-            <h1>Edit Brand</h1>
-            <Link to="/brands">Cancel</Link>
+            <div className="main-heading">
+                <h1 className="main-heading__title">Edit brand</h1>
+            </div>
+            <BrandForm brandData={brandData} submitBrandData={submitBrandData} id={id} />
         </div>
     );
 }
