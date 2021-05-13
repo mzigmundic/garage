@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-function VehicleForm({ vehicleData: { brand = "", name = "", image = "", power = 1 }, brands, submitVehicleData, id = null }) {
+function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = "", power = 1 }, brands, submitVehicleData }) {
     const [vehicleBrand, setVehicleBrand] = useState(brand || brands[0].id);
     const [vehicleName, setVehicleName] = useState(name);
     const [vehicleImage, setVehicleImage] = useState(image);

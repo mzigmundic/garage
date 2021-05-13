@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-function BrandForm({ brandData: { name = "", logo = "" }, submitBrandData, id = null }) {
+function BrandForm({ brandData: { id = null, name = "", logo = "" }, submitBrandData }) {
     const [brandName, setBrandName] = useState(name);
     const [brandLogo, setBrandLogo] = useState(logo);
     const history = useHistory();
