@@ -1,4 +1,9 @@
-function Home({ featuredVehicles }) {
+import { useContext } from "react";
+import RootStore from "../stores/RootStore";
+
+function Home() {
+    const store = useContext(RootStore);
+    const featuredVehicles = store.vehicleStore.featuredVehicles;
     return (
         <div className="container">
             <div className="main-heading">

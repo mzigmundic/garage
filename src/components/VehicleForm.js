@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import RootStore from "../stores/RootStore";
 
-function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = "", power = 1 }, brands, submitVehicleData }) {
+function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = "", power = 1 } }) {
+    const store = useContext(RootStore);
+    const brands = store.brandStore.brands;
     const [vehicleBrand, setVehicleBrand] = useState(brand || brands[0].id);
     const [vehicleName, setVehicleName] = useState(name);
     const [vehicleImage, setVehicleImage] = useState(image);
@@ -24,7 +27,7 @@ function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = 
     const submitBrand = (e) => {
         e.preventDefault();
         if (vehicleBrand && vehicleName && vehicleImage && vehiclePower) {
-            submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
+            store.vehicleStore.submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
             history.push("/collection");
         }
     };

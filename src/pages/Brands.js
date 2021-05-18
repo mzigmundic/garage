@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import RootStore from "../stores/RootStore";
+import { observer } from "mobx-react-lite";
 
 import BrandItem from "../components/BrandItem";
 
-function Brands({ brands, sellBrand }) {
+function Brands() {
+    const store = useContext(RootStore);
+    const brands = store.brandStore.brands;
     return (
         <div className="container">
             <div className="main-heading">
@@ -13,11 +18,11 @@ function Brands({ brands, sellBrand }) {
             </div>
             <ul className="grid">
                 {brands.map((brand) => (
-                    <BrandItem brand={brand} key={brand.id} sellBrand={sellBrand} />
+                    <BrandItem brand={brand} key={brand.id} />
                 ))}
             </ul>
         </div>
     );
 }
 
-export default Brands;
+export default observer(Brands);

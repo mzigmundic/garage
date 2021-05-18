@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import RootStore from "../stores/RootStore";
 
-function BrandItem({ brand, sellBrand }) {
+function BrandItem({ brand }) {
+    const store = useContext(RootStore);
+
     return (
         <li className="brand-card">
             <div className="brand-card__image">
@@ -12,7 +16,7 @@ function BrandItem({ brand, sellBrand }) {
                     <Link to={`/brands/${brand.id}/edit`} className="btn btn-edit">
                         Edit
                     </Link>
-                    <button className="btn btn-danger" onClick={() => sellBrand(brand.id)}>
+                    <button className="btn btn-danger" onClick={() => store.brandStore.sellBrand(brand.id)}>
                         Dispose
                     </button>
                 </div>

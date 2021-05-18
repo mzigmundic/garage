@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import RootStore from "../stores/RootStore";
 
-function BrandForm({ brandData: { id = null, name = "", logo = "" }, submitBrandData }) {
+function BrandForm({ brandData: { id = null, name = "", logo = "" } }) {
+    const store = useContext(RootStore);
     const [brandName, setBrandName] = useState(name);
     const [brandLogo, setBrandLogo] = useState(logo);
     const history = useHistory();
@@ -18,7 +20,7 @@ function BrandForm({ brandData: { id = null, name = "", logo = "" }, submitBrand
     const submitBrand = (e) => {
         e.preventDefault();
         if (brandName && brandLogo) {
-            submitBrandData({ brandName, brandLogo, id });
+            store.brandStore.submitBrandData({ brandName, brandLogo, id });
             history.push("/brands");
         }
     };
