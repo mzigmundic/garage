@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import RootStore from "../stores/RootStore";
+import usePagination from "../common/usePagination";
 import VehicleItem from "../components/VehicleItem";
 import Pagination from "../components/Pagination";
-import usePagination from "../common/usePagination";
 
 function Collection() {
     const store = useContext(RootStore);

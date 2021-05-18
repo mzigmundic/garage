@@ -1,4 +1,5 @@
 import { makeObservable, observable, computed, action } from "mobx";
+
 import { createNewId } from "../common/util";
 import vehiclesData from "../data/vehicles";
 

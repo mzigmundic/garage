@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import RootStore from "../stores/RootStore";
 
 function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = "", power = 1 } }) {

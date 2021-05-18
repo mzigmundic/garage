@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import BrandForm from "../components/BrandForm";
+
 import RootStore from "../stores/RootStore";
+import BrandForm from "../components/BrandForm";
 
 function EditBrand() {
     const store = useContext(RootStore);

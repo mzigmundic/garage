@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 
-function Layout() {
+function AppLayout() {
     return (
         <Fragment>
             <Header />
@@ -14,4 +14,4 @@ function Layout() {
     );
 }
 
-export default Layout;
+export default AppLayout;

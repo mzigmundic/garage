@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import RootStore from "../stores/RootStore";
-
+import usePagination from "../common/usePagination";
 import BrandItem from "../components/BrandItem";
 import Pagination from "../components/Pagination";
-import usePagination from "../common/usePagination";
 
 function Brands() {
     const store = useContext(RootStore);
     const maxPerPage = 4;
-    const { next, prev, jump, currentData, currentPage, totalPages } = usePagination(store.brandStore.brands, maxPerPage);
+    const { next, prev, jumpTo, currentData, currentPage, totalPages } = usePagination(store.brandStore.brands, maxPerPage);
 
     return (
         <div className="container">
@@ -27,7 +26,7 @@ function Brands() {
                 ))}
             </ul>
             {store.brandStore.totalBrands > maxPerPage && (
-                <Pagination next={next} prev={prev} jump={jump} currentPage={currentPage} totalPages={totalPages} />
+                <Pagination next={next} prev={prev} jumpTo={jumpTo} currentPage={currentPage} totalPages={totalPages} />
             )}
         </div>
     );
