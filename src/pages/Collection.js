@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
-import RootStore from "../stores/RootStore";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
+import RootStore from "../stores/RootStore";
 import VehicleItem from "../components/VehicleItem";
+import Pagination from "../components/Pagination";
+import usePagination from "../common/usePagination";
 
 function Collection() {
     const store = useContext(RootStore);
-    const vehicles = store.vehicleStore.vehicles;
+    const maxPerPage = 4;
+    const { next, prev, jumpTo, currentData, currentPage, totalPages } = usePagination(store.vehicleStore.vehicles, maxPerPage);
 
     return (
         <div className="container">
@@ -18,7 +21,7 @@ function Collection() {
                 </Link>
             </div>
             <ul className="grid">
-                {vehicles.map((vehicle) => (
+                {currentData().map((vehicle) => (
                     <VehicleItem
                         key={vehicle.id}
                         vehicle={vehicle}
@@ -26,6 +29,9 @@ function Collection() {
                     />
                 ))}
             </ul>
+            {store.vehicleStore.totalVehicles > maxPerPage && (
+                <Pagination next={next} prev={prev} jumpTo={jumpTo} currentPage={currentPage} totalPages={totalPages} />
+            )}
         </div>
     );
 }

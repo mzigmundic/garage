@@ -7,6 +7,7 @@ class VehicleStore {
     constructor(rootStore) {
         makeObservable(this, {
             vehicles: observable,
+            totalVehicles: computed,
             featuredVehicles: computed,
             getVehicle: action,
             getBrandLogo: action,
@@ -15,6 +16,10 @@ class VehicleStore {
             submitVehicleData: action,
         });
         this.rootStore = rootStore;
+    }
+
+    get totalVehicles() {
+        return this.vehicles.length;
     }
 
     get featuredVehicles() {
