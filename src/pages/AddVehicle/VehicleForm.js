@@ -1,11 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-
-function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = "", power = 1 } }) {
-    const store = useContext(RootStore);
-    const brands = store.brandStore.brands;
+function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand = "", name = "", image = "", power = 1 } }) {
+    const brands = brandStore.brands;
     const [vehicleBrand, setVehicleBrand] = useState(brand || brands[0].id);
     const [vehicleName, setVehicleName] = useState(name);
     const [vehicleImage, setVehicleImage] = useState(image);
@@ -28,7 +26,7 @@ function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = 
     const submitBrand = (e) => {
         e.preventDefault();
         if (vehicleBrand && vehicleName && vehicleImage && vehiclePower) {
-            store.vehicleStore.submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
+            vehicleStore.submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
             history.push("/collection");
         }
     };
@@ -101,4 +99,4 @@ function VehicleForm({ vehicleData: { id = null, brand = "", name = "", image = 
     );
 }
 
-export default VehicleForm;
+export default inject("brandStore", "vehicleStore")(VehicleForm);

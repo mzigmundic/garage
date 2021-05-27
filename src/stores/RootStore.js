@@ -1,5 +1,3 @@
-import { createContext } from "react";
-
 import VehicleStore from "./VehicleStore";
 import BrandStore from "./BrandStore";
 
@@ -10,4 +8,4 @@ class RootStore {
     }
 }
 
-export default createContext(new RootStore());
+export default new RootStore();

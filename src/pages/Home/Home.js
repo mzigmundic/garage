@@ -1,9 +1,6 @@
-import { useContext } from "react";
+import { inject, observer } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-
-function Home() {
-    const store = useContext(RootStore);
+function Home({ store }) {
     const featuredVehicles = store.vehicleStore.featuredVehicles;
     return (
         <div className="container">
@@ -23,4 +20,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default inject("store")(observer(Home));

@@ -1,13 +1,11 @@
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-import VehicleForm from "../components/VehicleForm";
+import VehicleForm from "../AddVehicle/VehicleForm";
 
-function EditVehicle() {
-    const store = useContext(RootStore);
+function EditVehicle({ vehicleStore }) {
     const vehicleId = useParams().modelId;
-    const vehicleData = store.vehicleStore.getVehicle(vehicleId);
+    const vehicleData = vehicleStore.getVehicle(vehicleId);
     return (
         <div className="container">
             <div className="main-heading">
@@ -18,4 +16,4 @@ function EditVehicle() {
     );
 }
 
-export default EditVehicle;
+export default inject("vehicleStore")(EditVehicle);

@@ -1,12 +1,12 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Home from "../pages/Home";
-import Collection from "../pages/Collection";
-import Brands from "../pages/Brands";
-import AddVehicle from "../pages/AddVehicle";
-import AddBrand from "../pages/AddBrand";
-import EditVehicle from "../pages/EditVehicle";
-import EditBrand from "../pages/EditBrand";
+import Home from "../pages/Home/Home";
+import Collection from "../pages/Collection/Collection";
+import Brands from "../pages/Brands/Brands";
+import AddVehicle from "../pages/AddVehicle/AddVehicle";
+import AddBrand from "../pages/AddBrand/AddBrand";
+import EditVehicle from "../pages/EditVehicle/EditVehicle";
+import EditBrand from "../pages/EditBrand/EditBrand";
 
 function Main() {
     return (

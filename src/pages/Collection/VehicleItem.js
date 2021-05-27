@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import RootStore from "../stores/RootStore";
-import { observer } from "mobx-react-lite";
+import { inject } from "mobx-react";
 
-function VehicleItem({ vehicle, brand }) {
-    const store = useContext(RootStore);
-    const highlightToggle = store.vehicleStore.highlightToggle;
-    const sellVehicle = store.vehicleStore.sellVehicle;
+function VehicleItem({ vehicleStore, vehicle, brand }) {
+    const highlightToggle = vehicleStore.highlightToggle;
+    const sellVehicle = vehicleStore.sellVehicle;
     const highlightButton = vehicle.featured ? (
         <button className="btn btn-highlight active" onClick={() => highlightToggle(vehicle.id)}>
             Unhighlight
@@ -45,4 +42,4 @@ function VehicleItem({ vehicle, brand }) {
     );
 }
 
-export default observer(VehicleItem);
+export default inject("vehicleStore")(VehicleItem);

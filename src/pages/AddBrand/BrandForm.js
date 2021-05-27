@@ -1,10 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-
-function BrandForm({ brandData: { id = null, name = "", logo = "" } }) {
-    const store = useContext(RootStore);
+function BrandForm({ brandStore, brandData: { id = null, name = "", logo = "" } }) {
     const [brandName, setBrandName] = useState(name);
     const [brandLogo, setBrandLogo] = useState(logo);
     const history = useHistory();
@@ -21,7 +19,7 @@ function BrandForm({ brandData: { id = null, name = "", logo = "" } }) {
     const submitBrand = (e) => {
         e.preventDefault();
         if (brandName && brandLogo) {
-            store.brandStore.submitBrandData({ brandName, brandLogo, id });
+            brandStore.submitBrandData({ brandName, brandLogo, id });
             history.push("/brands");
         }
     };
@@ -70,4 +68,4 @@ function BrandForm({ brandData: { id = null, name = "", logo = "" } }) {
     );
 }
 
-export default BrandForm;
+export default inject("brandStore")(BrandForm);

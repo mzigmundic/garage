@@ -1,16 +1,14 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-import usePagination from "../common/usePagination";
-import BrandItem from "../components/BrandItem";
-import Pagination from "../components/Pagination";
+import usePagination from "../../common/usePagination";
+import BrandItem from "./BrandItem";
+import Pagination from "../../components/Pagination";
 
-function Brands() {
-    const store = useContext(RootStore);
+function Brands({ brandStore }) {
     const maxPerPage = 4;
-    const { next, prev, jumpTo, currentData, currentPage, totalPages } = usePagination(store.brandStore.brands, maxPerPage);
+    const { next, prev, jumpTo, currentData, currentPage, totalPages } = usePagination(brandStore.brands, maxPerPage);
 
     return (
         <div className="container">
@@ -25,11 +23,11 @@ function Brands() {
                     <BrandItem brand={brand} key={brand.id} />
                 ))}
             </ul>
-            {store.brandStore.totalBrands > maxPerPage && (
+            {brandStore.totalBrands > maxPerPage && (
                 <Pagination next={next} prev={prev} jumpTo={jumpTo} currentPage={currentPage} totalPages={totalPages} />
             )}
         </div>
     );
 }
 
-export default observer(Brands);
+export default inject("brandStore")(observer(Brands));

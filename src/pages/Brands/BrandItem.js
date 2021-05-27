@@ -1,11 +1,7 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-
-function BrandItem({ brand }) {
-    const store = useContext(RootStore);
-
+function BrandItem({ brandStore, brand }) {
     return (
         <li className="brand-card">
             <div className="brand-card__image">
@@ -17,7 +13,7 @@ function BrandItem({ brand }) {
                     <Link to={`/brands/${brand.id}/edit`} className="btn btn-edit">
                         Edit
                     </Link>
-                    <button className="btn btn-danger" onClick={() => store.brandStore.sellBrand(brand.id)}>
+                    <button className="btn btn-danger" onClick={() => brandStore.sellBrand(brand.id)}>
                         Dispose
                     </button>
                 </div>
@@ -26,4 +22,4 @@ function BrandItem({ brand }) {
     );
 }
 
-export default BrandItem;
+export default inject("brandStore")(BrandItem);

@@ -1,13 +1,11 @@
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { inject } from "mobx-react";
 
-import RootStore from "../stores/RootStore";
-import BrandForm from "../components/BrandForm";
+import BrandForm from "../AddBrand/BrandForm";
 
-function EditBrand() {
-    const store = useContext(RootStore);
+function EditBrand({ brandStore }) {
     const brandId = useParams().brandId;
-    const brandData = store.brandStore.getBrand(brandId);
+    const brandData = brandStore.getBrand(brandId);
     return (
         <div className="container">
             <div className="main-heading">
@@ -18,4 +16,4 @@ function EditBrand() {
     );
 }
 
-export default EditBrand;
+export default inject("brandStore")(EditBrand);
