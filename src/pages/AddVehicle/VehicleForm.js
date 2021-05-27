@@ -1,40 +1,46 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { inject } from "mobx-react";
+import { observer } from "mobx-react-lite";
 
-function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand = "", name = "", image = "", power = 1 } }) {
+function VehicleForm({
+    brandStore,
+    vehicleStore,
+    vehicleFormStore,
+    vehicleData: { id = null, brand = "", name = "", image = "", power = 1 },
+}) {
+    useEffect(() => {
+        vehicleFormStore.initialize(brand, name, image, power);
+    }, []);
+
     const brands = brandStore.brands;
-    const [vehicleBrand, setVehicleBrand] = useState(brand || brands[0].id);
-    const [vehicleName, setVehicleName] = useState(name);
-    const [vehicleImage, setVehicleImage] = useState(image);
-    const [vehiclePower, setVehiclePower] = useState(power);
     const history = useHistory();
-    const buttonDisabled = !vehicleBrand || !vehicleName || !vehicleImage || !vehiclePower;
+    const buttonDisabled =
+        !vehicleFormStore.vehicleBrand || !vehicleFormStore.vehicleName || !vehicleFormStore.vehicleImage || !vehicleFormStore.vehiclePower;
 
     const handleChange = (e) => {
         if (e.target.name === "vehicleBrand") {
-            setVehicleBrand(e.target.value);
+            vehicleFormStore.setVehicleBrand(e.target.value);
         } else if (e.target.name === "vehicleName") {
-            setVehicleName(e.target.value);
+            vehicleFormStore.setVehicleName(e.target.value);
         } else if (e.target.name === "vehicleImage") {
-            setVehicleImage(e.target.value);
+            vehicleFormStore.setVehicleImage(e.target.value);
         } else if (e.target.name === "vehiclePower") {
-            setVehiclePower(e.target.value);
+            vehicleFormStore.setVehiclePower(e.target.value);
         }
     };
 
     const submitBrand = (e) => {
         e.preventDefault();
-        if (vehicleBrand && vehicleName && vehicleImage && vehiclePower) {
-            vehicleStore.submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
-            history.push("/collection");
-        }
+        const { vehicleBrand, vehicleName, vehicleImage, vehiclePower } = vehicleFormStore;
+        vehicleStore.submitVehicleData({ vehicleBrand, vehicleName, vehicleImage, vehiclePower, id });
+        history.push("/collection");
     };
     return (
         <form className="form">
             <div className="form-field">
                 <label htmlFor="vehicleBrand">Vehicle Brand</label>
-                <select value={vehicleBrand} onChange={handleChange} name="vehicleBrand" id="vehicleBrand">
+                <select value={vehicleFormStore.vehicleBrand} onChange={handleChange} name="vehicleBrand" id="vehicleBrand">
                     {brands.map((b) => {
                         return (
                             <option value={b.id} key={b.id}>
@@ -48,8 +54,8 @@ function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand
                 <label htmlFor="vehicleName">Vehicle Model</label>
                 <input
                     type="text"
-                    value={vehicleName}
-                    onChange={handleChange}
+                    value={vehicleFormStore.vehicleName}
+                    onInput={handleChange}
                     name="vehicleName"
                     id="vehicleName"
                     placeholder="Vehicle Name"
@@ -60,7 +66,7 @@ function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand
                 <label htmlFor="vehicleImage">Vehicle Image URL</label>
                 <input
                     type="text"
-                    value={vehicleImage}
+                    value={vehicleFormStore.vehicleImage}
                     onChange={handleChange}
                     name="vehicleImage"
                     id="vehicleImage"
@@ -78,7 +84,7 @@ function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand
                 <label htmlFor="vehiclePower">Power [kW]</label>
                 <input
                     type="number"
-                    value={vehiclePower}
+                    value={vehicleFormStore.vehiclePower}
                     onChange={handleChange}
                     name="vehiclePower"
                     id="vehiclePower"
@@ -99,4 +105,4 @@ function VehicleForm({ brandStore, vehicleStore, vehicleData: { id = null, brand
     );
 }
 
-export default inject("brandStore", "vehicleStore")(VehicleForm);
+export default inject("brandStore", "vehicleStore", "vehicleFormStore")(observer(VehicleForm));

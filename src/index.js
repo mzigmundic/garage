@@ -9,7 +9,12 @@ import rootStore from "./stores/RootStore";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={rootStore} vehicleStore={rootStore.vehicleStore} brandStore={rootStore.brandStore}>
+        <Provider
+            vehicleStore={rootStore.vehicleStore}
+            brandStore={rootStore.brandStore}
+            vehicleFormStore={rootStore.vehicleFormStore}
+            brandFormStore={rootStore.brandFormStore}
+        >
             <BrowserRouter>
                 <AppLayout />
             </BrowserRouter>

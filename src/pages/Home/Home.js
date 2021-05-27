@@ -1,14 +1,13 @@
 import { inject, observer } from "mobx-react";
 
-function Home({ store }) {
-    const featuredVehicles = store.vehicleStore.featuredVehicles;
+function Home({ vehicleStore }) {
     return (
         <div className="container">
             <div className="main-heading">
                 <h1 className="main-heading__title">Featured</h1>
             </div>
             <ul className="grid grid-showcase">
-                {featuredVehicles.map((vehicle) => {
+                {vehicleStore.featuredVehicles.map((vehicle) => {
                     return (
                         <li key={vehicle.id}>
                             <img src={vehicle.image} alt={vehicle.name} />
@@ -20,4 +19,4 @@ function Home({ store }) {
     );
 }
 
-export default inject("store")(observer(Home));
+export default inject("vehicleStore")(observer(Home));

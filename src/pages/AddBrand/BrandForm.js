@@ -1,27 +1,28 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
-function BrandForm({ brandStore, brandData: { id = null, name = "", logo = "" } }) {
-    const [brandName, setBrandName] = useState(name);
-    const [brandLogo, setBrandLogo] = useState(logo);
+function BrandForm({ brandStore, brandFormStore, brandData: { id = null, name = "", logo = "" } }) {
+    useEffect(() => {
+        brandFormStore.initialize(name, logo);
+    }, []);
+
     const history = useHistory();
-    const buttonDisabled = !brandName || !brandLogo;
+    const buttonDisabled = !brandFormStore.brandName || !brandFormStore.brandLogo;
 
     const handleChange = (e) => {
         if (e.target.name === "brandName") {
-            setBrandName(e.target.value);
+            brandFormStore.setBrandName(e.target.value);
         } else if (e.target.name === "brandLogo") {
-            setBrandLogo(e.target.value);
+            brandFormStore.setBrandLogo(e.target.value);
         }
     };
 
     const submitBrand = (e) => {
         e.preventDefault();
-        if (brandName && brandLogo) {
-            brandStore.submitBrandData({ brandName, brandLogo, id });
-            history.push("/brands");
-        }
+        const { brandName, brandLogo } = brandFormStore;
+        brandStore.submitBrandData({ brandName, brandLogo, id });
+        history.push("/brands");
     };
 
     return (
@@ -30,7 +31,7 @@ function BrandForm({ brandStore, brandData: { id = null, name = "", logo = "" } 
                 <label htmlFor="brandName">Brand Name</label>
                 <input
                     type="text"
-                    value={brandName}
+                    value={brandFormStore.brandName}
                     onChange={handleChange}
                     name="brandName"
                     id="brandName"
@@ -42,7 +43,7 @@ function BrandForm({ brandStore, brandData: { id = null, name = "", logo = "" } 
                 <label htmlFor="brandLogo">Brand Logo URL</label>
                 <input
                     type="text"
-                    value={brandLogo}
+                    value={brandFormStore.brandLogo}
                     onChange={handleChange}
                     name="brandLogo"
                     id="brandLogo"
@@ -68,4 +69,4 @@ function BrandForm({ brandStore, brandData: { id = null, name = "", logo = "" } 
     );
 }
 
-export default inject("brandStore")(BrandForm);
+export default inject("brandStore", "brandFormStore")(observer(BrandForm));
