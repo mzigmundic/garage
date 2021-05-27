@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
 function VehicleItem({ vehicleStore, vehicle, brand }) {
     const highlightToggle = vehicleStore.highlightToggle;
@@ -42,4 +42,4 @@ function VehicleItem({ vehicleStore, vehicle, brand }) {
     );
 }
 
-export default inject("vehicleStore")(VehicleItem);
+export default inject("vehicleStore")(observer(VehicleItem));

@@ -7,12 +7,11 @@ function VehicleForm({
     brandStore,
     vehicleStore,
     vehicleFormStore,
-    vehicleData: { id = null, brand = "", name = "", image = "", power = 1 },
+    vehicleData: { id = null, brand = undefined, name = "", image = "", power = 1 },
 }) {
     useEffect(() => {
         vehicleFormStore.initialize(brand, name, image, power);
     }, []);
-
     const brands = brandStore.brands;
     const history = useHistory();
     const buttonDisabled =
