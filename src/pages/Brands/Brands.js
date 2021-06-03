@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { inject } from "mobx-react";
 
+import BrandItem from "./components/BrandItem";
 import usePagination from "../../common/usePagination";
-import BrandItem from "./BrandItem";
 import Pagination from "../../components/Pagination";
 
 function Brands({ brandStore }) {
@@ -23,6 +23,7 @@ function Brands({ brandStore }) {
                     <BrandItem brand={brand} key={brand.id} />
                 ))}
             </ul>
+            {!brandStore.totalBrands && <p className="empty-section-message">No brands</p>}
             {brandStore.totalBrands > maxPerPage && (
                 <Pagination next={next} prev={prev} jumpTo={jumpTo} currentPage={currentPage} totalPages={totalPages} />
             )}

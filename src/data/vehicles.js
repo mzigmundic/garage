@@ -63,6 +63,14 @@ const vehicles = [
         power: 230,
         featured: false,
     },
+    {
+        id: "9",
+        brand: "1",
+        name: "750",
+        image: "https://car-pictures.cars.com/images/?IMG=USD00BMC012A021001.jpg&HEIGHT=600",
+        power: 210,
+        featured: false,
+    },
 ];
 
 export default vehicles;

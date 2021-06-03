@@ -1,4 +1,4 @@
-import BrandForm from "./BrandForm";
+import BrandForm from "./components/BrandForm";
 
 function AddBrand() {
     return (

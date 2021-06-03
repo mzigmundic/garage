@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { inject } from "mobx-react";
 
-import VehicleForm from "../AddVehicle/VehicleForm";
+import VehicleForm from "../AddVehicle/components/VehicleForm";
 
 function EditVehicle({ vehicleStore }) {
     const vehicleId = useParams().modelId;

@@ -108,6 +108,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .main-heading__title {
@@ -155,6 +156,12 @@ img {
     background-color: var(--color-primary);
     color: var(--color-white);
     width: 100%;
+}
+
+.empty-section-message {
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 5rem 0;
 }
 
 .grid {

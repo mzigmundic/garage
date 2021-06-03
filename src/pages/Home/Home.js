@@ -15,6 +15,7 @@ function Home({ vehicleStore }) {
                     );
                 })}
             </ul>
+            {!vehicleStore.featuredVehicles.length && <p className="empty-section-message">No featured vehicles</p>}
         </div>
     );
 }

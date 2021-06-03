@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { inject } from "mobx-react";
 
-import BrandForm from "../AddBrand/BrandForm";
+import BrandForm from "../AddBrand/components/BrandForm";
 
 function EditBrand({ brandStore }) {
     const brandId = useParams().brandId;
